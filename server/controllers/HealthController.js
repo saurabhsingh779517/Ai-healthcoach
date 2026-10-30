@@ -3,10 +3,10 @@ const { calculateBMI, getBMICategory, calculateBMR, calculateTDEE, calculateDail
 
 const saveHealthProfile = async (req, res) => {
     try {
-        const { userId, age, gender, height, weight, activityLevel, goal, dietPreferences, sleepHours, waterIntake } = req.body;
+        const {  age, gender, height, weight, activityLevel, goal, dietPreferences, sleepHours, waterIntake } = req.body;
 
         // Validate and process the input data
-        if (!userId || !age || !gender || !height || !weight || !activityLevel || !goal || !dietPreferences || !sleepHours || !waterIntake) {
+        if ( !age || !gender || !height || !weight || !activityLevel || !goal || !dietPreferences || !sleepHours || !waterIntake) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -15,7 +15,7 @@ const saveHealthProfile = async (req, res) => {
         const bmr = calculateBMR(weight, height, age, gender);
         const tdee = calculateTDEE(bmr, activityLevel);
         const dailyCalories = calculateDailyCalories(bmr, activityLevel, goal);
-
+        const userId = req.user._id
         // Save the health profile to the database
 
         let profile = await HealthProfile.findOne({ userId });
@@ -45,7 +45,7 @@ const saveHealthProfile = async (req, res) => {
                 sleepHours,
                 waterIntake
             });
-            
+           await profile.save(); 
         }
 
         res.status(201).json({ message: "Health profile saved successfully", 
@@ -81,9 +81,17 @@ const saveHealthProfile = async (req, res) => {
 
 const getHealthProfile = async (req, res) => {
     try {
-        const { userId } = req.params;
+        
+console.log("Authenticated user from protect:", req.user);
 
-        const profile = await HealthProfile.findOne({ userId });
+const userId = req.user._id;
+
+console.log("Searching profile for userId:", userId);
+
+const profile = await HealthProfile.findOne({ userId });
+
+console.log("Profile found in database:", profile);
+
         if (!profile) {
             return res.status(404).json({ message: "Health profile not found" });
         }

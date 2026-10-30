@@ -1,0 +1,83 @@
+
+.verify-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f7fb;
+}
+
+.verify-card {
+    width: 420px;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.verify-card h1 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.main-text {
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.email {
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 20px;
+    word-break: break-word;
+}
+
+.description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.resend-text {
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.verify-card button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 7px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.verify-card button:hover {
+    background: #1d4ed8;
+}
+
+.verify-card button:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+
+.success {
+    margin-top: 18px;
+    color: #16a34a;
+}
+
+.error {
+    margin-top: 18px;
+    color: #dc2626;
+}
+
+.spam-text {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #888;
+}
+
